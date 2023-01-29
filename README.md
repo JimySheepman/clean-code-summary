@@ -201,10 +201,8 @@ there should be the less vertical distance between them. For example; assert fun
 </p>
 
 * Sometimes we buy Third-Party packages or use open source. We have to somehow integrate this foreign code cleanly into our code. In this section, we look at practices and techniques for keeping the boundaries of our software clean.
-
 * Using Third-Party Code; direct use. This code creates many dependencies and vulnerabilities. Instead, you can write a single client that uses it and access it in a more restricted way from anywhere in your code. It results in code that is easier to understand and harder to abuse.
 * When you have a Third-Party dependency, you can test it with mock data.
-
 * It may be in our interest to write tests for Third-Party code. Assuming it's not clear how to use our Third-Party library. We might spend a day or two (or more) reading the documentation and deciding how to use it. Then we can write our code to use Third-Party code and see if it does what we think. We wouldn't be surprised if we find ourselves stuck in long debugging sessions trying to figure out whether the bugs we encounter are in our code or theirs.
 * Difficult to learn and integrate Third-Party code. Doing both at the same time is twice as difficult. Instead of trying and experimenting with new things in our production location, we can write some tests to explore our understanding of Third-Party code. Jim Newkirk calls these types of tests learning tests.
 * Learning tests cost nothing. We had to learn the API anyway, and writing these tests was an easy and isolated way to get that knowledge. Learning tests are definitive experiences that help increase our understanding.
