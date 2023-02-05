@@ -334,7 +334,13 @@ Not çıkarırken önemli gördüğüm yerleri yazdım yani bu bir özet niteli�
   <br/>
 </p>
 
-Yazılmayı bekliyor.
+- Bu chapter bir CLI uygulamasının argument parser yapısını inceleyen case study'dir.
+- Kod üzerinden anlatım yapılmaktadır. Bu chapter direkt okunmalıdır.
+- Çalışan kod sadece bir işe yaramaz. İleride bozulur ve çalışmaz.
+- Bir projede kötü kodun etkisi çok fazladır.
+- Kötü kod çok fazla technical debt yaratır.
+- Kodu clean'e çekmenin zaman maliyeti çok fazladır.
+- Kötü kod birden fazla dependency yaratır ve bunu çözümlemek süreçleri daha zorlaştırır.
 
 ## Chapter-15 JUnit Internals
 
@@ -343,7 +349,11 @@ Yazılmayı bekliyor.
   <br/>
 </p>
 
-Yazılmayı bekliyor.
+- Bu chapter JUnit framework'ün bir kısmını eleştiriyor.
+- Kod üzerinden anlatım yapılmaktadır. Bu chapter direkt okunmalıdır.
+- Framework'ler söz konusu olduğunda, JUnit tasarım açısından basit, tanım açısından kesin ve uygulama açısından zekicedir.
+- Testlerin coverage'ı önemlidir.
+- Her birimizin kodu bulduğumuzdan biraz daha iyi bırakma sorumluluğu vardır.
 
 ## Chapter-16 Refactoring SerialDate
 
@@ -352,7 +362,11 @@ Yazılmayı bekliyor.
   <br/>
 </p>
 
-Yazılmayı bekliyor.
+- Bu chapter'da JCommon library'sinin org.jfree.date paketinin SerialDate class'ı var ve onu refactor ediyor.
+- Kod üzerinden anlatım yapılmaktadır. Bu chapter direkt okunmalıdır.
+- Eleştiri iyidir ve insanı geliştirir.
+- İlk olarak kodun çalışmasını sağla. Her şeyi test ettiğinden emin ol ve testlerden geçmesini sağla.
+- Kodu bulduğundan daha clean bırak. Bu zaman alabilir ama buna değer.
 
 ## Chapter-17 Smells and Heuristics
 
@@ -361,7 +375,80 @@ Yazılmayı bekliyor.
   <br/>
 </p>
 
-Yazılmayı bekliyor.
+- Bu chapter Martin Fowler'un Refactoring kitabındaki “Code Smells" tanımından bahsediyor.
+- Comments
+  - C1: Inappropriate Information; kodun haricindeki her şeyi farklı bir yerde tut. Yorumlar, kod ve tasarımla ilgili teknik notlar için ayrılmalıdır.
+  - C2: Obsolete Comment; yorumlar hızlı yaşlanırlar. Yorumu silebildiğin noktada silmelisin.
+  - C3: Redundant Comment; gereksiz yere yorum yazma.
+  - C4: Poorly Written Comment; eksik yada zayıf yazılmış yorumlar olmamalıdır.
+  - C5: Commented-Out Code; bir kod yorumlanıyorsa bu bir iğrençliktir.
+- Environment
+  - E1: Build Requires More Than One Step; bir projeyi çalıştırmak basit olmalıdır.
+  - E2: Tests Require More Than One Step; testleri çalıştırmak kolay olmalıdır.
+- Functions
+  - F1: Too Many Arguments; fonksiyonların az sayıda argümanı olmalıdır. 3-4'ten fazla argümanı var ise kendini sorgula.
+  - F2: Output Arguments; fonksiyonun bir nesnenin durumunu değiştirmesi gerekiyorsa, onu çıktı olarak geçmektense çağrıldığı nesnenin durumunu değiştirmesini sağlayın.
+  - F3: Flag Arguments; boolean parametre olması fazla işlem yaptığını ifade eder.
+  - F4: Dead Function; ölü fonksiyonları sil.
+- General
+  - G1: Multiple Languages in One Source File; bir dosyanın içerisinde birden fazla dil kullanmaktan kaçın.
+  - G2: Obvious Behavior Is Unimplemented; okuduğumuz kod beklentimizi karşılamalı. Bir çıktı beklerken farklı bir şey sunmamalı.
+  - G3: Incorrect Behavior at the Boundaries; yazdığın koda güvenme, her boundary condition için test yazmaya çalış.
+  - G4: Overridden Safeties; güvenlik adımlarını atlama.
+  - G5: Duplication; en önemli kurallardan birisidir. Dave Thomas ve Andy Hunt buna DRY principle (Don’t Repeat Yourself) adını verdi. Kent Beck, bunu Extreme Programming'in temel ilkelerinden biri haline getirdi ve “Once, and only once.” dedi. Ron Jeffries, bu kuralı tüm testlerin geçmesini sağlamanın hemen altında ikinci sırada tutuyor. Kodda duplication gördüğünüz her zaman, abstraction için kaçırılmış bir fırsatı temsil eder. Switch/case yada if/else yapılarını polymorphism ile değiştirin. Benzer algoritmalara sahip olan ancak benzer kod satırlarını paylaşmayan modüller daha da inceliklidir. Bu yine bir tekrardır ve "TEMPLATE METHOD" veya "STRATEGY PATTERN" kullanılarak ele alınmalıdır.
+  - G6: Code at Wrong Level of Abstraction; yanlış seviyede abstraction yapılmamalı.
+  - G7: Base Classes Depending on Their Derivatives; base class'ın sub class'tan gelen şeylere depend olmaması gereklidir.
+  - G8: Too Much Information; iyi tanımlanmış modüller, çok az şeyle çok şey yapmanıza izin veren çok küçük interface'lere sahiptir. Bu şekilde interface'ler tanımlanmalıdır.
+  - G9: Dead Code; ölü yani kullanılmayan kodlar tespit edilmeli ve silinmelidir.
+  - G10: Vertical Separation; değişkenler ve fonksiyon kullanıldıkları yere yakın tanımlanmalıdır.
+  - G11: Inconsistency; isimler tüm projede yaptıkları işe göre tutarlı bir şekilde isimlendirilmelidir.
+  - G12: Clutter; kullanmadığın şeyleri silmelisin.
+  - G13: Artificial Coupling; birbirine bağlı olmayan şeyler yapay olarak birleştirilmemelidir.
+  - G14: Feature Envy; bir class'ın metotları, diğer class'ın değişkenleri ve fonksiyonları ile değil, ait oldukları class'ın değişkenleri ve fonksiyonları ile ilgilenmelidir.
+  - G15: Selector Arguments; davranışı seçmek için bir fonksiyona bazı kodlar geçirmektense birçok fonksiyona sahip olmak daha iyidir.
+  - G16: Obscured Intent; kod anlamlı ve okunabilir olmalı.
+  - G17: Misplaced Responsibility; kullandığınız kodu doğru bir yere koyduğunuzdan emin olun. İlişkili yapıları bir arada tutmalısınız.
+  - G18: Inappropriate Static; statik olmayan metotları statik metotlara tercih etmelisiniz. Bir fonksiyonun gerçekten statik olmasını istiyorsanız, polymorphically davranmasını isteme şansınızın olmadığından emin olun.
+  - G19: Use Explanatory Variables; değişken isimleri iyi ve açıklayıcı olmalıdır.
+  - G20: Function Names Should Say What They Do; bir fonksiyon ismi kendi yaptığı işi açıklamalıdır.
+  - G21: Understand the Algorithm; algoritmayı anlamanın en iyi yolu, fonksiyonun, nasıl çalıştığını açıkça gösterecek kadar temiz ve anlamlı bir şey olana kadar refactor etmektir.
+  - G22: Make Logical Dependencies Physical; bir modül diğerine depend ise, bu dependency sadece mantıksal değil, fiziksel de olmalıdır.
+  - G23: Prefer Polymorphism to If/Else or Switch/Case; kod yazarken switch/case yada if/else yapısı yerine, polymorphism ile değiştirin.
+  - G24: Follow Standard Conventions; takım içi kuralların ve standartların belirlenmesi gerekmektedir.
+  - G25: Replace Magic Numbers with Named Constants; kodunuzda ham sayılar olması kötü bir fikirdir. Onları iyi adlandırılmış constant'ların arkasına saklamalısınız.
+  - G26: Be Precise; koddaki belirsizlikler ve tutarsızlıklar sebebi ya anlaşmazlıkların ya da tembelliğin sonucudur. Her iki durumda da ortadan kaldırılmaları gerekir. Bu sebeple kararlı olmalısın.
+  - G27: Structure over Convention; yapısal kuralları her şeyin üstünde tutmalıyız.
+  - G28: Encapsulate Conditionals; if condition içerisinde birden fazla yapı kontrol ediliyorsa, bir metotda extract edilmeli ve if içerisinde method çağrılmalıdır.
+  - G29: Avoid Negative Conditionals; if condition içerisinde pozitif durumlar kontrol edilmeli.
+  - G30: Functions Should Do One Thing; fonksiyon tek bir işten sorumlu olmalı ve yapmalıdır.
+  - G31: Hidden Temporal Couplings; zamansal eşleşmeyi açık hale getiren bağımsız değişkenler kullanın.
+  - G32: Don’t Be Arbitrary; kod yapınız doğru ve tutarlı olmalıdır.
+  - G33: Encapsulate Boundary Conditions; bazı kontrollerde +1 yada -1'e ihtiyaç doğabilir. Kodun her yerine sızmalarına izin vermeyin. +1'lerin ve -1'lerin sağa sola dağılmasını istemiyoruz.
+  - G34: Functions Should Descend Only One Level of Abstraction; fonksiyon içindeki ifadelerin tümü, fonksiyon adıyla açıklanan işlemin bir düzey altında olması gereken aynı abstraction düzeyinde yazılmalıdır.
+  - G35: Keep Configurable Data at High Levels; yüksek seviyeli sabitlerin değiştirilmesi kolaydır.
+  - G36: Avoid Transitive Navigation; A ile B; B ile C işbirliği yaparsa, A modüllerinin C hakkında bilgi sahibi olmasını istemeyiz. Yani A; B üzerinden C'yi bilmemelidir.
+- Java
+  - J1: Avoid Long Import Lists by Using Wildcards; bir paketten iki veya daha fazla class kullanıyorsanız, paketin tamamını import edin.
+  - J2: Don’t Inherit Constants; constants, inheritance hiyerarşisinin en üstünde gizlidir. Inheritance'sı, dilin scope belirleme kurallarını aldatmanın bir yolu olarak kullanmayın.
+  - J3: Constants versus Enums; public static final int tanımlamak yerine enum'a başvurun.
+- Names
+  - N1: Choose Descriptive Names; açıklayıcı ve anlamlı isimler seçin.
+  - N2: Choose Names at the Appropriate Level of Abstraction; abstraction seviyesine göre doğru isimlendirmeler seçin.
+  - N3: Use Standard Nomenclature Where Possible; tüm isimlendirmelerde yaptığı işi ifade eden isimler kullanın.
+  - N4: Unambiguous Names; uzun isimlendirmelerden çekinmeyin, önemli olan açıklayıcı olmasıdır.
+  - N5: Use Long Names for Long Scopes; kapsamına göre isimlendirme seçilmelidir.
+  - N6: Avoid Encodings; şifrelenmiş isimlendirmeler kullanmayın.
+  - N7: Names Should Describe Side-Effects; isimlendirme bir fonksiyonun, değişkenin veya class'ın olduğu veya yaptığı her şeyi tanımlamalıdır. Side-Effects'i bir isimlendirme ile saklamayın, isimlendirmede belirtin.
+- Tests
+  - T1: Insufficien; test kodu, kodda bozulabilecek her şeyi test etmelidir. Doğrulanmamış testler veya hesaplamalar tarafından keşfedilmemiş koşullar olduğu sürece testler yetersizdir.
+  - T2: Use a Coverage Tool; testlerin kodda nereleri cover ettiğini görmek için araçlar kullanın.
+  - T3: Don’t Skip Trivial Tests; case'ler önemsiz dahi olsa testleri yazmaktan kaçınmayın.
+  - T4: An Ignored Test is a Question about an Ambiguity; testinizi göz ardı ediyorsanız, kodunuzu sorgulayın.
+  - T5: Test Boundary Conditions; boundary conditions test etmek için özelikle dikkat edin. Genellikle bir algoritmanın ortasını doğru anlarız, ancak sınırları yanlış değerlendiririz.
+  - T6: Exhaustively Test Near Bugs; bir fonksiyonda bir bug bulduğunuzda, o fonksiyonun kapsamlı bir testini yapmak akıllıca olacaktır.
+  - T7: Patterns of Failure Are Revealing; iyi düzenlenmemiş test senaryoları, başarısızlık kalıplarını ortaya çıkaracaktır.
+  - T8: Test Coverage Patterns Can Be Revealing; pass olan testler tarafından yürütülen veya yürütülmeyen koda bakmak, fail olan testlerin neden fail olduğuna dair ipuçları verir.
+  - T9: Tests Should Be Fast; yavaş test, çalıştırılmayacak bir testtir. Testlerinizi hızlı tutmak için yapmanız gerekeni yapın.
 
 ## Referans
 
